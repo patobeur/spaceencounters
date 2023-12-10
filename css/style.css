@@ -1,0 +1,81 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+canvas{position: absolute;z-index: -1;top:0;left:0}
+.infodiv {
+	position: relative;
+	z-index: 20;
+	color:rgb(107, 179, 0);
+	width: max-content;
+	&:hover{
+		background-color: rgba(10, 3, 51, 0.6);
+	}
+}
+.storyDiv {
+	background-color: #ffcc0027;
+    position: fixed;
+    bottom: -80px;
+    left: 50%;
+	transform: translate(-50%);
+	height: max-content;
+	width: 350px;
+	border-radius: .7rem;
+	color: white;
+	padding:.5rem;
+	&.active{
+		bottom: 20px;
+	}
+}
+#planetesvignettes {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+	height: 100%;
+	padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-end;
+	overflow-y: auto;
+	.vignette {
+		width: max-content;
+		display: flex;
+		justify-content: flex-end;
+		margin: .1rem .2rem 0 0;
+		.emoji {
+			border: 1px solid rgba(255, 255, 255, 0.432);
+			border-top-right-radius: .7rem;
+			border-bottom-right-radius: .7rem;
+			border-left: none;
+		}
+		.name {
+			font-weight: bold;
+			border-top-left-radius: .7rem;
+			border-bottom-left-radius: .7rem;
+			color:#ffcc00;
+			border: 1px solid rgba(255, 255, 255, 0.432);
+			border-right: none;
+			padding:.2rem .2rem .2rem .5rem;
+			width: max-content;
+			
+		}
+		&.active .name {
+			background-color: #ffcc00;
+			color:#ffffff;
+		}
+		&.star .name,
+		&.star .emoji {
+			background-color:rgb(90, 10, 10);
+		}
+		&.planet .name,
+		&.planet .emoji{
+			background-color:rgb(11, 10, 90);
+		}
+		&.satellite .name,
+		&.satellite .emoji{
+			background-color:rgb(26, 26, 41);
+		}
+		&.unknown .name,
+		&.unknown .emoji{
+			background-color:rgb(92, 0, 80);
+		}
+	}
+}
