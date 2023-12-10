@@ -1,4 +1,4 @@
-import {_engine} from "./_engine.js";
+import {_engine} from "./engine.js";
 import {_ship} from "./_ship.js";
 export let _controls = {
 	controls:{up:false,down:false,left:false,right:false},

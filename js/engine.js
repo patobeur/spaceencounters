@@ -1,5 +1,5 @@
 import {_ship} from "./_ship.js";
-import {_controls} from "./_controls.js";
+import {_controls} from "./controls.js";
 export let _engine = {
 	engine:false,
 	speedyRatio:.005, // pour affiner la vitesse

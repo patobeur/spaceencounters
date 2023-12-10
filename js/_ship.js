@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {_engine} from "./_engine.js";
+import {_engine} from "./engine.js";
 import {_planetes} from "./_planetes.js";
 import {_htmlFront} from "./_htmlFront.js";
 import {_newton} from "./_newton.js";

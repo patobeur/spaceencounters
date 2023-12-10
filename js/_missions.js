@@ -1,4 +1,4 @@
-import {_colis} from "./_colis.js";
+import {_colis} from "./colis.js";
 export let _missions = {
 	id: new Number(0),
 	counter: 0,
