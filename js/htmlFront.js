@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import {_engine} from "./engine.js";
-import {_ship} from "./_ship.js";
-import { _systemsDatas } from "./_systemsDatas.js";
+import {_ship} from "./ship.js";
+import { _systemsDatas } from "./systemsDatas.js";
 export let _htmlFront = {
 	infoDiv: null,
 	storyDiv: null,

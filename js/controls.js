@@ -1,5 +1,5 @@
 import {_engine} from "./engine.js";
-import {_ship} from "./_ship.js";
+import {_ship} from "./ship.js";
 export let _controls = {
 	controls:{up:false,down:false,left:false,right:false},
 	controlsKeys:{

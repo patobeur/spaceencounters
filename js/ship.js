@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import {_engine} from "./engine.js";
-import {_planetes} from "./_planetes.js";
-import {_htmlFront} from "./_htmlFront.js";
-import {_newton} from "./_newton.js";
+import {_planetes} from "./planetes.js";
+import {_htmlFront} from "./htmlFront.js";
+import {_newton} from "./newton.js";
 export let _ship = {
 	id:0,
 	groupe: new THREE.Group(),

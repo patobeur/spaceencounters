@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import {_planetes} from "./_planetes.js";
+import {_planetes} from "./planetes.js";
 export let _systemsDatas = {
 	json: {
 		solarSystem: [

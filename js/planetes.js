@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import {_htmlFront} from "./_htmlFront.js";
-import {_systemsDatas} from "./_systemsDatas.js";
-import {_newton} from "./_newton.js";
-import {_ship} from "./_ship.js";
+import {_htmlFront} from "./htmlFront.js";
+import {_systemsDatas} from "./systemsDatas.js";
+import {_newton} from "./newton.js";
+import {_ship} from "./ship.js";
 export let _planetes = {
 	id: new Number(0),
     G: 0.8 * Math.pow(10, -2),

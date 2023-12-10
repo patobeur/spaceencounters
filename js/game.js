@@ -3,12 +3,12 @@ import * as THREE from "three";
 // import {_engine} from "./_engine.js";
 // import {_newton} from "./_newton.js";
 import {_cameras} from "./cameras.js";
-import {_ship} from "./_ship.js";
-import {_htmlFront} from "./_htmlFront.js";
-import {_planetes} from "./_planetes.js";
-import {_ombre} from "./_ombre.js";
+import {_ship} from "./ship.js";
+import {_htmlFront} from "./htmlFront.js";
+import {_planetes} from "./planetes.js";
+import {_ombre} from "./ombre.js";
 import {_controls} from "./controls.js";
-import {_missions} from "./_missions.js";
+import {_missions} from "./missions.js";
 import {_colis} from "./colis.js";
 class Game {
 	run=false;

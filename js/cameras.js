@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import {_ship} from "./_ship.js";
-import {_planetes} from "./_planetes.js";
+import {_ship} from "./ship.js";
+import {_planetes} from "./planetes.js";
 export let _cameras = {
 	id:new Number(0),
 	cameras:{},

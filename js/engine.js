@@ -1,4 +1,4 @@
-import {_ship} from "./_ship.js";
+import {_ship} from "./ship.js";
 import {_controls} from "./controls.js";
 export let _engine = {
 	engine:false,
