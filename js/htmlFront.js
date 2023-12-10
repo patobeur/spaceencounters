@@ -3,28 +3,17 @@ import {_engine} from "./engine.js";
 import {_ship} from "./ship.js";
 import { _systemsDatas } from "./systemsDatas.js";
 export let _htmlFront = {
-	infoDiv: null,
+	consoleDiv: null,
 	storyDiv: null,
 	planetsDiv: null,
 	entrys:{},
 	init: function () {
-		// this.infoDiv = document.createElement("div");
-		// this.infoDiv.className = "infodiv";
-		this.storyDiv = this.createDiv({
-			tag:'div',
-			attributes:{className:"storyDiv"},
-			style:{}
-		})
-		document.body.appendChild(this.storyDiv);
-		this.infoDiv = this.createDiv({
-			tag:'div',
-			attributes:{className:"infodiv"},
-			style:{}
-		})
-		document.body.appendChild(this.infoDiv);
-
-		this.planetsDiv = this.createDiv({tag:'div',attributes:{id:"planetesvignettes"}});
-		document.body.appendChild(this.planetsDiv);		
+		// this.consoleDiv = document.createElement("div");
+		// this.consoleDiv.className = "consoleDiv";
+		this.addstoryDiv()
+		this.addconsoleDiv()
+		this.addplanetsDiv()
+		this.addboardDiv()
 	},
 	addPlanetEntry: function (pack) {
 		console.log('addPlanetEntry',pack)
@@ -63,15 +52,44 @@ export let _htmlFront = {
 		  });
 
 	},
+	addboardDiv: function () {
+		this.boardDiv = this.createDiv({
+			tag:'div',
+			attributes:{className:"boardDiv"},
+			style:{}
+		})
+		document.body.appendChild(this.planetsDiv);
+	},
+	addstoryDiv: function () {
+		this.storyDiv = this.createDiv({
+			tag:'div',
+			attributes:{className:"storyDiv"},
+			style:{}
+		})
+		document.body.appendChild(this.storyDiv);
+	},
+	addconsoleDiv: function () {
+		this.consoleDiv = this.createDiv({
+			tag:'div',
+			attributes:{className:"consoleDiv"},
+			style:{}
+		})
+		document.body.appendChild(this.consoleDiv);
+	},
+	addplanetsDiv: function () {
+		this.planetsDiv = this.createDiv({tag:'div',attributes:{id:"planetesvignettes"}});
+	},
 	refresh: function (p, nearestPlanet) {
 		if (nearestPlanet && nearestPlanet.distanceToShip !== null) {
-			this.infoDiv.innerHTML =
+			this.consoleDiv.innerHTML =
 				`<b>Informations sur la Ship:</b><br>` +
 				`Rotation Z: ${p.groupe.rotation.z.toFixed(2)}<br>` +
 				`Position X: ${p.groupe.position.x.toFixed(2)}<br>` +
 				`Position Y: ${p.groupe.position.y.toFixed(2)}<br>` +
 				`Position Z: ${p.groupe.position.z.toFixed(2)}<br>` +
-				`Vitesse (${p.vx.toFixed(1)}, ${p.vy.toFixed(1)}, ${p.vz.toFixed(1)})<br>` +
+				`Vx: ${p.vx.toFixed(3)}<br>` +
+				`Vy: ${p.vy.toFixed(3)}<br>` +
+				`Vz: ${p.vz.toFixed(3)}<br>` +
 				`Puissance du moteur: ${(_engine.power.cur)}<br><br>` +
 				`<b>Informations sur la Planète la plus proche:</b><br>` +
 				`Nom: ${nearestPlanet.name}<br>` +
@@ -80,7 +98,7 @@ export let _htmlFront = {
 				`Rayon: ${nearestPlanet.radius.toFixed(2)}<br>` +
 				`Gravité: ${nearestPlanet.gravity.toFixed(2)}<br>`;
 		} else {
-			this.infoDiv.innerHTML = "Calcul de la distance en cours...";
+			this.consoleDiv.innerHTML = "Calcul de la distance en cours...";
 		}
 	},
 	createDiv: function (params) {

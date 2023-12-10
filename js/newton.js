@@ -1,5 +1,7 @@
 import * as THREE from "three";
 export const _newton = {
+    // G: 0.8 * Math.pow(10, -2),
+    
     /**
      * Calcule la force de gravité selon la loi universelle de Newton.
      * @param {number} masse1 - Masse du premier objet.
@@ -25,4 +27,5 @@ export const _newton = {
         return Math.sqrt(dx * dx + dy * dy);
     },
 	PIHalf: (Math.PI / 2),
+	earthG: 0.8 * Math.pow(10, -2),
 }

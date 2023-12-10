@@ -52,7 +52,6 @@ export let _systemsDatas = {
 				gravity: 0.8 * Math.pow(10, -2),
 				texture: "nasa_earth.jpg",
 				temperature: 37,
-				mass: 1,
 				// objects: { box: {}, start: {}, end: {} },
                 story:"Notre planète, la Terre, mesure environ 12 742 kilomètres de diamètre et possède une masse d'environ 5,97 x 10^24 kg, caractérisée par une diversité biologique unique et un climat propice à la vie.",
 				satellites: [

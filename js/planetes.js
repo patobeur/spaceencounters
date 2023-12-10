@@ -5,7 +5,6 @@ import {_newton} from "./newton.js";
 import {_ship} from "./ship.js";
 export let _planetes = {
 	id: new Number(0),
-    G: 0.8 * Math.pow(10, -2),
 	planetes: {},
 	counter: 0,
 	nearestId:0,//nearestPlaneteId
@@ -15,8 +14,8 @@ export let _planetes = {
 	category:{satellite:'S',planete:'P',etoile:'E'},
 	//--------------------------
 	conf:{
-		defaultMass: 0.8 * Math.pow(10, 3),
-		defaultGravity: 0,
+		defaultMass: 10,
+		defaultGravity: (0.8 * Math.pow(10, -2)),
 		defaultRadius:50,
 		defaultColor:0x0000ff,
 		defaultAtmosphereSize:25,
@@ -44,13 +43,8 @@ export let _planetes = {
 		this.oldPack = this.currentPack
 	},
 	add: function (datas) {
-		console.log('add Planet',datas.category)
-		// console.log('datas:',datas)
-		this.conf.defaultGravity = this.G;
-
 		let radius=(datas&&datas.radius)?datas.radius:this.conf.defaultRadius;
 		let atmosphereSize=(datas&&datas.atmosphereSize)?datas.atmosphereSize:this.conf.defaultAtmosphereSize;
-		// ----------------------
 
 		let pack = {
 			id:this.id,
@@ -61,6 +55,7 @@ export let _planetes = {
 			mass:(datas&&datas.mass)?datas.mass:this.conf.defaultMass,
 			gravity:(datas&&datas.gravity)?datas.gravity:this.conf.defaultGravity,
 			radius:radius,
+			//--------------
 			atmosphereSize:atmosphereSize,
 			atmosphereradius:radius+atmosphereSize,
 			//--------------
@@ -79,8 +74,7 @@ export let _planetes = {
 			planete:null,
 			atmosphere:null,
 		}
-		// console.log('pack',pack)
-		//----------------
+		
 		pack.groupe = new THREE.Group();
 		pack.groupe.name = "grp_"+pack.name
 		
@@ -88,8 +82,6 @@ export let _planetes = {
 		pack.groupe.position.y = pack.position.y;
 		pack.groupe.position.z = pack.position.z;
 		
-		//----------------
-        
 			const material = new THREE.TextureLoader().load( './textures/'+pack.texture );
 			material.colorSpace = THREE.SRGBColorSpace;
 
@@ -117,18 +109,15 @@ export let _planetes = {
 			})
 		);
 		pack.planete.name = pack.name;
-		//----------------
+		
 		pack.atmosphere = new THREE.Mesh(
 			new THREE.SphereGeometry(pack.atmosphereradius, 32, 32),
 			new THREE.MeshBasicMaterial({ color: 0x0000FF,transparent: true, opacity:0.05})
 		);
 		pack.atmosphere.name = "atmosphere_"+pack.name;
-		//----------------
+		
 		pack.groupe.add( pack.planete );
 		pack.groupe.add( pack.atmosphere );
-		// console.log('pack.groupe',pack.groupe)
-
-		// if(this.currentPack===null) this.currentPack=pack
 
 		this.planetes[this.id] = pack
 		this.planetesIdByName[pack.name] = this.id
@@ -146,22 +135,19 @@ export let _planetes = {
 		let satellitePack = {
 			id: this.id,
 			name: (satellite && satellite.name) ? satellite.name : "satellite_" + this.id,
-			//--------------
+			
 			groupe:new THREE.Group(),
 			planete:null,
 			atmosphere:null,
 			emoji:(satellite&&satellite.emoji)?satellite.emoji:"❔",
-			//--------------
+			
 			mass:(satellite&&satellite.mass)?satellite.mass:this.conf.defaultMass,
 			gravity:(satellite&&satellite.gravity)?satellite.gravity:this.conf.defaultGravity,
 			radius:radius,
+			
 			atmosphereSize:atmosphereSize,
 			atmosphereradius:radius+atmosphereSize,
-			//--------------
-			// vx:this.conf.vx,
-			// vy:this.conf.vy,
-			// vz:this.conf.vz,
-			// velocity:this.conf.velocity,
+			
 			distanceToShip:null,
 			color:(satellite&&satellite.color)?satellite.color:'white',
 			position: (satellite && satellite.position) ? satellite.position : new THREE.Vector3(0,0,0),
@@ -194,27 +180,17 @@ export let _planetes = {
 		satellitePack.groupe.add(satellitePack.planete)
 		satellitePack.groupe.add(satellitePack.atmosphere)
 		
-		// satellitePack.groupe.position.copy(
-		// 	parentPack.groupe.position.clone().add(satellitePack.position)
-		// );
-
 		satellitePack.groupe.position.x = parentPack.groupe.position.x + satellitePack.position.x
 		satellitePack.groupe.position.y = parentPack.groupe.position.y + satellitePack.position.y
 
 		satellitePack.position.x = satellitePack.groupe.position.x+0
 		satellitePack.position.y = satellitePack.groupe.position.y+0
 
-		// console.log(satellitePack.groupe.position)
-		// console.log(satellitePack.position)
-
 		// Ajoutez le satellite à la liste des planètes
 		this.planetes[this.id] = satellitePack;
 		this.planetesIdByName[satellitePack.name] = this.id
 		this.id++;
 		this.counter++;
-	
-		// Ajoutez le satellite à la scène et au groupe de la planète parente
-		// this.currentPack.groupe.add(satellitePack.groupe);
 	
 		_htmlFront.addPlanetEntry(satellitePack);
 	},
@@ -250,7 +226,7 @@ export let _planetes = {
 		}
 	},
 	appliquerGraviteColis: function(planetePack,colisPack)  {
-		// console.log('ok')
+		
 		let distance = _newton.calculerDistance(planetePack, colisPack);
 		if(colisPack.nearestPlaneteDistance===null)colisPack.nearestPlaneteDistance = distance;
 		if (distance<colisPack.nearestPlaneteDistance) {
@@ -258,7 +234,6 @@ export let _planetes = {
 			colisPack.nearestPlanetePack=colisPack;
 		}
 
-		// planetePack.distanceToColis = distance
 		if(distance > planetePack.radius + (colisPack.radius) ) { // or _ship.radius instead of _ship.height
 			let forceMagnitude = _newton.loiUNewton(
 				planetePack.mass,
@@ -277,20 +252,16 @@ export let _planetes = {
 			colisPack.vy += forceDirection.y * forceMagnitude; 
 		}
 		else {
-			// landing or crash -- reset all to zero
-			// colisPack.vx=0
-			// colisPack.vy=0
-			// colisPack.vz=0
+			// landing or crash -- reset all to zero -- rebondis 
 			colisPack.vx *= -0.5;
 			colisPack.vy *= -0.5;
 		}
 		// Mise à jour de la position en fonction de vx, vy, et vz
 		colisPack.groupe.position.x += colisPack.vx;
 		colisPack.groupe.position.y += colisPack.vy;
-		// console.log(colisPack.name,colisPack.groupe.position) 
-		// colisPack.groupe.position.z += colisPack.vz;
 	},
 	init(){
+		this.conf.defaultGravity = this.G
 		  this.addThemAll()
 	},
 	addThemAll:function(){
