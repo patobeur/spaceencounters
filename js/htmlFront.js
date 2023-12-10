@@ -10,10 +10,10 @@ export let _htmlFront = {
 	init: function () {
 		// this.consoleDiv = document.createElement("div");
 		// this.consoleDiv.className = "consoleDiv";
-		this.addstoryDiv()
 		this.addconsoleDiv()
 		this.addplanetsDiv()
 		this.addboardDiv()
+		this.addstoryDiv()
 	},
 	addPlanetEntry: function (pack) {
 		console.log('addPlanetEntry',pack)
@@ -58,7 +58,32 @@ export let _htmlFront = {
 			attributes:{className:"boardDiv"},
 			style:{}
 		})
-		document.body.appendChild(this.planetsDiv);
+		document.body.appendChild(this.boardDiv);
+
+
+		this.velocityDiv = this.createDiv({tag:'div',attributes:{className:"velocityDiv"}})
+		this.velocityDivx = this.createDiv({tag:'div',attributes:{className:"vx"}})
+		this.velocityDivy = this.createDiv({tag:'div',attributes:{className:"vy"}})
+		this.bubblex = this.createDiv({tag:'div',attributes:{className:"bubble bbx"}})
+		this.bubbley = this.createDiv({tag:'div',attributes:{className:"bubble bby"}})
+		// this.velocityDivz = this.createDiv({tag:'div',attributes:{className:"vz"}})
+
+		this.velocityDivx.appendChild(this.bubblex);
+		this.velocityDivy.appendChild(this.bubbley);
+
+		this.velocityDiv.appendChild(this.velocityDivx);
+		this.velocityDiv.appendChild(this.velocityDivy);
+		// this.velocityDiv.appendChild(this.velocityDivz);
+
+		document.body.appendChild(this.velocityDiv);
+
+
+
+
+
+
+
+
 	},
 	addstoryDiv: function () {
 		this.storyDiv = this.createDiv({
@@ -78,6 +103,7 @@ export let _htmlFront = {
 	},
 	addplanetsDiv: function () {
 		this.planetsDiv = this.createDiv({tag:'div',attributes:{id:"planetesvignettes"}});
+		document.body.appendChild(this.planetsDiv);
 	},
 	refresh: function (p, nearestPlanet) {
 		if (nearestPlanet && nearestPlanet.distanceToShip !== null) {

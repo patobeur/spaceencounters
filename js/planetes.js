@@ -14,7 +14,7 @@ export let _planetes = {
 	category:{satellite:'S',planete:'P',etoile:'E'},
 	//--------------------------
 	conf:{
-		defaultMass: 10,
+		defaultMass: 300, // earth
 		defaultGravity: (0.8 * Math.pow(10, -2)),
 		defaultRadius:50,
 		defaultColor:0x0000ff,
@@ -226,7 +226,6 @@ export let _planetes = {
 		}
 	},
 	appliquerGraviteColis: function(planetePack,colisPack)  {
-		
 		let distance = _newton.calculerDistance(planetePack, colisPack);
 		if(colisPack.nearestPlaneteDistance===null)colisPack.nearestPlaneteDistance = distance;
 		if (distance<colisPack.nearestPlaneteDistance) {

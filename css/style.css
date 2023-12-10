@@ -9,8 +9,70 @@ canvas{position: absolute;z-index: -1;top:0;left:0}
 		background-color: rgba(10, 3, 51, 0.6);
 	}
 }
-.storyDiv {
+.velocityDiv {
+	/* background-color: #ffcc0027; */
+    position: fixed;
+    bottom: 55px;
+    left: 50%;
+	transform: translate(-50%);
+	height: max-content;
+	width: 1px;
+	/* border-radius: .7rem; */
+	color: white;
+	padding:.5rem;
+	/* background-color: #ffcc00; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	&.active{
+		bottom: 20px;
+	}
+	.vx,
+	.vy {
+		width: 201px;
+		height: 1px;
+		margin-bottom: 1rem;
+		display: flex;
+		align-items: center;
+		border: 1px dotted rgba(255, 255, 255, 0.418);
+		.bubble{
+			position: relative;
+			transform: translate(-50%);
+			width: 16px;
+			height: 16px;
+			background-color: #1329129d;
+			border-radius: 50%;
+			border: 1px solid white;
+			&.bbx{
+				left:50%;
+
+			}
+			&.bby{
+				left:30%;
+
+			}
+		}
+	}
+}
+.boardDiv {
 	background-color: #ffcc0027;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+	/* transform: translate(-50%); */
+	height: max-content;
+	width: 350px;
+	border-radius: .7rem;
+	color: white;
+	padding:.5rem;
+	background-color: #ffcc00;
+	&.active{
+		bottom: 20px;
+	}
+}
+.storyDiv {
+	background-color: rgb(75, 61, 5);
     position: fixed;
     bottom: -80px;
     left: 50%;

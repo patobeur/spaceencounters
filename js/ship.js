@@ -47,8 +47,10 @@ export let _ship = {
 		let id = _planetes.planetesIdByName[planeteName];
 		console.log(_planetes.planetes[id].position)
 		console.log(this.groupe.position)
+
 		this.groupe.position.x = _planetes.planetes[id].position.x +0
-		this.groupe.position.y = _planetes.planetes[id].position.y + _planetes.planetes[id].radius + (_planetes.planetes[id].radius/3)
+		// this.groupe.position.y = _planetes.planetes[id].position.y + _planetes.planetes[id].radius + (_planetes.planetes[id].radius/3)
+		this.groupe.position.y = _planetes.planetes[id].position.y + _planetes.planetes[id].radius + 5
 
 	},
 	/**
