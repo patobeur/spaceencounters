@@ -2,7 +2,7 @@ import * as THREE from "three";
 // import {_systemsDatas} from "./_systemsDatas.js";
 // import {_engine} from "./_engine.js";
 // import {_newton} from "./_newton.js";
-import {_cameras} from "./_cameras.js";
+import {_cameras} from "./cameras.js";
 import {_ship} from "./js/_ship.js";
 import {_htmlFront} from "/spaceencounters/js/_htmlFront.js";
 import {_planetes} from "/spaceencounters/js/_planetes.js";
