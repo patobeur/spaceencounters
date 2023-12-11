@@ -12,7 +12,7 @@ canvas{position: absolute;z-index: -1;top:0;left:0}
 .velocityDiv {
 	/* background-color: #ffcc0027; */
     position: fixed;
-    bottom: 55px;
+    bottom: 0;
     left: 50%;
 	transform: translate(-50%);
 	height: max-content;
@@ -30,7 +30,7 @@ canvas{position: absolute;z-index: -1;top:0;left:0}
 	}
 	.vx,
 	.vy {
-		width: 201px;
+		width: 151px;
 		height: 1px;
 		margin-bottom: 1rem;
 		display: flex;
@@ -46,11 +46,26 @@ canvas{position: absolute;z-index: -1;top:0;left:0}
 			border: 1px solid white;
 			&.bbx{
 				left:50%;
-
+				&:after{content:"X";}
 			}
 			&.bby{
 				left:30%;
-
+				&:after{content:"Y";}
+			}
+			&.bbx,
+			&.bby{
+				&:after{
+					position: relative;
+					border-radius: 50%;
+					top:50%;
+					left:50%;
+					transform: translate(-50%,-50%);
+					color:white;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size:.6rem;
+				}
 			}
 		}
 	}

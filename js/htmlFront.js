@@ -12,7 +12,7 @@ export let _htmlFront = {
 		// this.consoleDiv.className = "consoleDiv";
 		this.addconsoleDiv()
 		this.addplanetsDiv()
-		this.addboardDiv()
+		// this.addboardDiv()
 		this.addstoryDiv()
 	},
 	addPlanetEntry: function (pack) {
@@ -74,16 +74,7 @@ export let _htmlFront = {
 		this.velocityDiv.appendChild(this.velocityDivx);
 		this.velocityDiv.appendChild(this.velocityDivy);
 		// this.velocityDiv.appendChild(this.velocityDivz);
-
 		document.body.appendChild(this.velocityDiv);
-
-
-
-
-
-
-
-
 	},
 	addstoryDiv: function () {
 		this.storyDiv = this.createDiv({
@@ -108,14 +99,14 @@ export let _htmlFront = {
 	refresh: function (p, nearestPlanet) {
 		if (nearestPlanet && nearestPlanet.distanceToShip !== null) {
 			this.consoleDiv.innerHTML =
-				`<b>Informations sur la Ship:</b><br>` +
+				`<b>Informations sur le Vaisseau:</b><br>` +
 				`Rotation Z: ${p.groupe.rotation.z.toFixed(2)}<br>` +
 				`Position X: ${p.groupe.position.x.toFixed(2)}<br>` +
 				`Position Y: ${p.groupe.position.y.toFixed(2)}<br>` +
 				`Position Z: ${p.groupe.position.z.toFixed(2)}<br>` +
-				`Vx: ${p.vx.toFixed(3)}<br>` +
-				`Vy: ${p.vy.toFixed(3)}<br>` +
-				`Vz: ${p.vz.toFixed(3)}<br>` +
+				`Vx: ${_engine.vx.toFixed(3)}<br>` +
+				`Vy: ${_engine.vy.toFixed(3)}<br>` +
+				`Vz: ${_engine.vz.toFixed(3)}<br>` +
 				`Puissance du moteur: ${(_engine.power.cur)}<br><br>` +
 				`<b>Informations sur la Planète la plus proche:</b><br>` +
 				`Nom: ${nearestPlanet.name}<br>` +

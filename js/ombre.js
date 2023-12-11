@@ -13,9 +13,9 @@ export let _ombre = {
 		this.ombre.position.y = pos.y
 	},
     /**
-     * Obtient la position de surface en fonction de la planète et de l'angle vers la ship.
+     * Obtient la position de surface en fonction de la planète et de l'angle vers le Vaisseau.
      * @param {Object} planetePack - Pack de la planète.
-     * @param {number} theta - Angle theta vers la ship.
+     * @param {number} theta - Angle theta vers le Vaisseau.
      * @returns {Object} - Nouvelles ositions x et y.
      */
 	getSurfacePos:function(planetePack, theta) {

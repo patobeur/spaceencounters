@@ -10,6 +10,7 @@ import {_ombre} from "./ombre.js";
 import {_controls} from "./controls.js";
 import {_missions} from "./missions.js";
 import {_colis} from "./colis.js";
+import { _newton } from "./newton.js";
 class Game {
 	run=false;
 	scene = null;
@@ -158,8 +159,8 @@ class Game {
 				if (Object.hasOwnProperty.call(planetes, key)) {
 					const planetePack = planetes[key];
 					
-					// Appliquer la gravité de la planète en cours à la ship
-					_planetes.appliquerGravite(planetePack);
+					// Appliquer la gravité de la planète en cours au Vaisseau
+					_newton.appliquerGraviteShip(planetePack);
 	
 					// Récupérer la distance ship/planète en considérant la surface
 					dddddd = planetePack.distanceToShip + 0;	
@@ -176,7 +177,7 @@ class Game {
 						if (Object.hasOwnProperty.call(colis, key)) {
 							const colisPack = colis[key];
 							// console.log(colisPack)
-							_planetes.appliquerGraviteColis(planetePack,colisPack)
+							_newton.appliquerGraviteColis(planetePack,colisPack)
 						}
 					}
 
@@ -213,6 +214,6 @@ class Game {
 	tweaks=function () {
 	}
 }
-const startingPlaneteName = 'lune';
+const startingPlaneteName = 'soleil';
 let GAME = new Game();
 GAME.init();

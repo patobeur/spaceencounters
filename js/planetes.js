@@ -3,6 +3,7 @@ import {_htmlFront} from "./htmlFront.js";
 import {_systemsDatas} from "./systemsDatas.js";
 import {_newton} from "./newton.js";
 import {_ship} from "./ship.js";
+import {_engine} from "./engine.js";
 export let _planetes = {
 	id: new Number(0),
 	planetes: {},
@@ -11,11 +12,11 @@ export let _planetes = {
 	oldPack:null,
 	currentPack:null,
 	planetesIdByName:{},
-	category:{satellite:'S',planete:'P',etoile:'E'},
+	category:{satellite:'S',planete:'P',etoile:'E',unknown:'U'},
 	//--------------------------
 	conf:{
 		defaultMass: 300, // earth
-		defaultGravity: (0.8 * Math.pow(10, -2)),
+		defaultGravity: _newton.G,
 		defaultRadius:50,
 		defaultColor:0x0000ff,
 		defaultAtmosphereSize:25,
@@ -203,65 +204,11 @@ export let _planetes = {
 		}
 	},
 	appliquerRotationAuxSattelites: function()  {
-		//faire tourner les sattelites autour de leur planete mere
-	},
-	appliquerGravite: function(planetePack)  {
-		let distance = _newton.calculerDistance(planetePack, _ship);
-		planetePack.distanceToShip = distance
-		if(distance > planetePack.radius + (_ship.height/2) ) { // or _ship.radius instead of _ship.height
-			let forceMagnitude = _newton.loiUNewton(planetePack.mass, _ship.mass,distance,planetePack.gravity);
-			let dx = planetePack.groupe.position.x - _ship.groupe.position.x;
-			let dy = planetePack.groupe.position.y - _ship.groupe.position.y;  
-			let forceDirection = {
-				x: dx / distance,
-				y: dy / distance
-			};
-			_ship.vx += forceDirection.x * forceMagnitude;
-			_ship.vy += forceDirection.y * forceMagnitude; 
-		}
-		else {
-			// landing or crash -- rebonds or reset all to zero
-			_ship.vx *= -0.5;
-			_ship.vy *= -0.5;
-		}
-	},
-	appliquerGraviteColis: function(planetePack,colisPack)  {
-		let distance = _newton.calculerDistance(planetePack, colisPack);
-		if(colisPack.nearestPlaneteDistance===null)colisPack.nearestPlaneteDistance = distance;
-		if (distance<colisPack.nearestPlaneteDistance) {
-			colisPack.nearestPlaneteDistance=distance;
-			colisPack.nearestPlanetePack=colisPack;
-		}
-
-		if(distance > planetePack.radius + (colisPack.radius) ) { // or _ship.radius instead of _ship.height
-			let forceMagnitude = _newton.loiUNewton(
-				planetePack.mass,
-				colisPack.mass,
-				distance,
-				planetePack.gravity
-			);
-			let dx = planetePack.groupe.position.x - colisPack.groupe.position.x;
-			let dy = planetePack.groupe.position.y - colisPack.groupe.position.y;
-
-			let forceDirection = {
-				x: dx / distance,
-				y: dy / distance
-			};
-			colisPack.vx += forceDirection.x * forceMagnitude;
-			colisPack.vy += forceDirection.y * forceMagnitude; 
-		}
-		else {
-			// landing or crash -- reset all to zero -- rebondis 
-			colisPack.vx *= -0.5;
-			colisPack.vy *= -0.5;
-		}
-		// Mise à jour de la position en fonction de vx, vy, et vz
-		colisPack.groupe.position.x += colisPack.vx;
-		colisPack.groupe.position.y += colisPack.vy;
+		// faire tourner les sattelites autour de leur planete mere
+		// ou pas !!! mais ca peut etre sympa 
 	},
 	init(){
-		this.conf.defaultGravity = this.G
-		  this.addThemAll()
+		this.addThemAll()
 	},
 	addThemAll:function(){
 		_systemsDatas.addSolarSystem('solarSystem')
